@@ -10,14 +10,14 @@
       <h3 style="color:red" >login here</h3>
 
      {% if message %}
-          <p style="color:black">{{message}}</p>
+          <p style="color:blue">{{message}}</p>
      {% endif %}
 
       <form action="/perform_login" method="post">
           <label>Email</label><br>
-          <input type="email" name="user_name_" required><br>
+          <input type="email" name="user_name_" ><br>
           <label>Password</label><br>
-          <input type="password" name="user_password_" required><br>
+          <input type="password" name="user_password_"><br>
           <input type="submit" value="Login"><br>
       </form>
 

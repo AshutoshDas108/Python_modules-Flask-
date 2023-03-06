@@ -1,9 +1,10 @@
 from flask import Flask, render_template, request, redirect
 from db import Database
+import api
 
 app = Flask(__name__)
 
-dbo=Database()
+dbo = Database()
 
 @app.route('/')
 def index():
@@ -34,12 +35,12 @@ def perform_registration():
 @app.route('/perform_login', methods=['post'])
 def perform_login():
     email = request.form.get('user_email_')
-    password = request.form.get('user-password_')
-    response = dbo.search(email,password)
+    password = request.form.get('user_password_')
+    response = dbo.search(email, password)
     if response:
         return redirect('/profile')
     else:
-        return render_template('login.html', message="incorrect username/ password")
+        return render_template('login.html', message="incorrect username/password")
 
 
 @app.route('/profile')
@@ -53,8 +54,10 @@ def ner():
 
 @app.route('/perform_ner')
 def perform_ner():
-    text=request.form.get('ner_text')
-
+    text = request.form.get('ner_text')
+    response = api.ner(text)
+    print(response)
+    return 'something'
 
 
 app.run(debug=True)
