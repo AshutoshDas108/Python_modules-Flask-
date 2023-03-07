@@ -32,6 +32,12 @@ def perform_registration():
     return str(name) + " " + str(email) + " " + str(password)
 
 
+@app.route('/profile')
+def profile():
+    return render_template('profile.html')
+
+
+
 @app.route('/perform_login', methods=['post'])
 def perform_login():
     email = request.form.get('user_email_')
@@ -41,11 +47,6 @@ def perform_login():
         return redirect('/profile')
     else:
         return render_template('login.html', message="incorrect username/password")
-
-
-@app.route('/profile')
-def profile():
-    return render_template('profile.html')
 
 @app.route('/ner')
 def ner():
